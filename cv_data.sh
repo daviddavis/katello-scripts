@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# cv_data.sh
+#
+# load up the database with some content view data
+
 function k {
   ~/.bin/katello "$@"
 }
