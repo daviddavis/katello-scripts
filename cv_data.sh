@@ -5,50 +5,48 @@
 #
 # load up the database with some content view data
 
-function k {
-  ~/.bin/katello "$@"
-}
+source "$(dirname $0)/setup.sh"
 
-k environment create --org=ACME_Corporation --name=Dev --prior=Library
-k environment create --org=ACME_Corporation --name=Staging --prior=Dev
+k environment create --name=Dev --prior=Library
+k environment create --name=Staging --prior=Dev
 
-k content definition create --org=ACME_Corporation --name=NoSQL
-k content definition create --org=ACME_Corporation --name=RHEL7
+k content definition create --name=NoSQL
+k content definition create --name=RHEL7
 
-k provider create --org=ACME_Corporation --name=Adobe
-k provider create --org=ACME_Corporation --name=IBM
-k product create --org=ACME_Corporation --provider=Adobe --name=Zooshop
-k product create --org=ACME_Corporation --provider=IBM --name=WatsonDB
+k provider create --name=Adobe
+k provider create --name=IBM
+k product create --provider=Adobe --name=Zooshop
+k product create --provider=IBM --name=WatsonDB
 
-k repo create --org=ACME_Corporation --product_label=Zooshop --url="http://mmccune.fedorapeople.org/discovery/zoo/" --name=zoo
-k repo create --org=ACME_Corporation --product_label=WatsonDB --url="http://mmccune.fedorapeople.org/discovery/acme/" --name=acme
-k repo create --org=ACME_Corporation --product_label=Zooshop --url="http://mmccune.fedorapeople.org/discovery/zoo_ks2/" --name=zoo_ks2
-k repo create --org=ACME_Corporation --product_label=Zooshop --url="http://inecas.fedorapeople.org/fakerepos/zoo2/" --name=zoo2
-k repo create --org=ACME_Corporation --product_label=WatsonDB --url="http://inecas.fedorapeople.org/fakerepos/ks/" --name=ks
+k repo create --product_label=Zooshop --url="http://mmccune.fedorapeople.org/discovery/zoo/" --name=zoo
+k repo create --product_label=WatsonDB --url="http://mmccune.fedorapeople.org/discovery/acme/" --name=acme
+k repo create --product_label=Zooshop --url="http://mmccune.fedorapeople.org/discovery/zoo_ks2/" --name=zoo_ks2
+k repo create --product_label=Zooshop --url="http://inecas.fedorapeople.org/fakerepos/zoo2/" --name=zoo2
+k repo create --product_label=WatsonDB --url="http://inecas.fedorapeople.org/fakerepos/ks/" --name=ks
 
-k repo synchronize --org=ACME_Corporation --name=zoo --product_label=Zooshop
-k repo synchronize --org=ACME_Corporation --name=acme --product_label=WatsonDB
-k repo synchronize --org=ACME_Corporation --name=zoo_ks2 --product_label=Zooshop
-k repo synchronize --org=ACME_Corporation --name=zoo2 --product_label=Zooshop
-k repo synchronize --org=ACME_Corporation --name=ks --product_label=WatsonDB
+k repo synchronize --name=zoo --product_label=Zooshop
+k repo synchronize --name=acme --product_label=WatsonDB
+k repo synchronize --name=zoo_ks2 --product_label=Zooshop
+k repo synchronize --name=zoo2 --product_label=Zooshop
+k repo synchronize --name=ks --product_label=WatsonDB
 
-k content definition add_product --org=ACME_Corporation --name=NoSQL --product=WatsonDB
-k content definition add_repo --org=ACME_Corporation --name=RHEL7 --repo=zoo --product=Zooshop
-k content definition add_repo --org=ACME_Corporation --name=RHEL7 --repo=zoo_ks2 --product=Zooshop
+k content definition add_product --name=NoSQL --product=WatsonDB
+k content definition add_repo --name=RHEL7 --repo=zoo --product=Zooshop
+k content definition add_repo --name=RHEL7 --repo=zoo_ks2 --product=Zooshop
 
-k content definition publish --org=ACME_Corporation --view_name=NoSQL1 --label=NoSQL
-k content definition publish --org=ACME_Corporation --view_name=NoSQL2 --name=NoSQL
-k content definition publish --org=ACME_Corporation --view_name=RHEL7-1 --label=RHEL7
-k content definition publish --org=ACME_Corporation --view_name=RHEL7-2 --name=RHEL7
+k content definition publish --view_name=NoSQL1 --label=NoSQL
+k content definition publish --view_name=NoSQL2 --name=NoSQL
+k content definition publish --view_name=RHEL7-1 --label=RHEL7
+k content definition publish --view_name=RHEL7-2 --name=RHEL7
 
-k content view promote --org=ACME_Corporation --name=NoSQL1 --env=Dev
-k content view promote --org=ACME_Corporation --name=NoSQL2 --env=Dev
-k content view promote --org=ACME_Corporation --name=RHEL7-1 --env=Dev
-k content view promote --org=ACME_Corporation --name=RHEL7-1 --env=Staging
-k content view promote --org=ACME_Corporation --name=RHEL7-2 --env=Dev
-k content view promote --org=ACME_Corporation --name=NoSQL2 --env=Staging
+k content view promote --name=NoSQL1 --env=Dev
+k content view promote --name=NoSQL2 --env=Dev
+k content view promote --name=RHEL7-1 --env=Dev
+k content view promote --name=RHEL7-1 --env=Staging
+k content view promote --name=RHEL7-2 --env=Dev
+k content view promote --name=NoSQL2 --env=Staging
 
-k content view refresh --org=ACME_Corporation --label=NoSQL2
-k content view promote --org=ACME_Corporation --name=NoSQL2 --env=Dev
-k content view refresh --org=ACME_Corporation --label=NoSQL2
-k content view refresh --org=ACME_Corporation --label=RHEL7-2
+k content view refresh --label=NoSQL2
+k content view promote --name=NoSQL2 --env=Dev
+k content view refresh --label=NoSQL2
+k content view refresh --label=RHEL7-2
