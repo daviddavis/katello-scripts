@@ -18,6 +18,7 @@ k provider create --org=ACME_Corporation --name=PuppetLabs
 k product create --org=ACME_Corporation --name=PForge --provider=PuppetLabs
 
 k repo create --name=pforge --url="http://forge.puppetlabs.com" --product=PForge --content_type=puppet
+k repo create --name=p --product=PForge --content_type=puppet
 k repo synchronize --org=ACME_Corporation --name=pforge --product_label=PForge
 
 k content definition add_repo --org=ACME_Corporation --name=PuppetMods --repo=pforge --product=PForge
