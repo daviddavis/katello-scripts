@@ -23,7 +23,7 @@ k product repository_set_enable --name "Red Hat Enterprise Linux Server" --set_n
 
 k repo enable --product "Red Hat Enterprise Linux Server" --name "Red Hat Enterprise Linux 6 Server RPMs x86_64 6Server"
 
-if [ ! -z $1 ]
+if [ -n $1 ]
 then
   k provider synchronize --name "Red Hat"
 fi

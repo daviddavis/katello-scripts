@@ -16,7 +16,7 @@ k product create --name=PForge --provider=PuppetLabs
 k repo create --name=pforge --url="http://forge.puppetlabs.com" --product=PForge --content_type=puppet
 k repo create --name=p --product=PForge --content_type=puppet
 
-if [ ! -z $1]
+if [ -n $1 ]
 then
   k repo synchronize --name=pforge --product_label=PForge
   k content definition create --name=PuppetMods
