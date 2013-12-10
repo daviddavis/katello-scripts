@@ -1,5 +1,5 @@
 gem 'unicorn-rails'
-gem 'jazz_hands'
+gem 'pry-plus'
 # gem 'quiet_assets'
 gem 'hirb'
 gem 'awesome_print'
