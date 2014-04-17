@@ -1,4 +1,4 @@
-gem 'unicorn-rails'
+gem 'puma-rails'
 gem 'pry-plus'
 # gem 'quiet_assets'
 gem 'hirb'
