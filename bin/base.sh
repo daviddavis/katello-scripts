@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# setup.sh
+# base.sh
 #
 # setup common items for katello-scripts
 #
