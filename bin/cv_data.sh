@@ -5,7 +5,7 @@
 #
 # load up the database with some content view data
 
-source "$(dirname $0)/setup.sh"
+source "$(dirname $0)/base.sh"
 
 k environment create --name=Dev --prior=Library
 k environment create --name=Staging --prior=Dev
