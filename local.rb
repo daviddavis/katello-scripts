@@ -1,5 +1,5 @@
 gem 'puma-rails'
-gem 'pry-plus'
+gem 'jazz_hands'
 # gem 'quiet_assets'
 gem 'hirb'
 gem 'awesome_print'
