@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mongo pulp_database --eval 'db.dropDatabase()'
+sudo -u apache pulp-manage-db
+pulp-restart

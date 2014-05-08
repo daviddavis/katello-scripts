@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for x in httpd pulp_workers pulp_resource_manager pulp_celerybeat
+do
+  sudo service $x restart
+done
