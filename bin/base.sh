@@ -6,14 +6,17 @@
 # setup common items for katello-scripts
 #
 
-KATELLO_CLI_PATH=${KATELLO_CLI_PATH:-"/usr/bin/katello"}
-KATELLO_USER=${KATELLO_USER:-admin}
-KATELLO_PASS=${KATELLO_PASS:-admin}
-KATELLO_ORG=${KATELLO_ORG:-ACME_Corporation}
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-function k {
-  ${KATELLO_CLI_PATH} -u $KATELLO_USER -p $KATELLO_PASS "$@"
+KATELLO_CLI_PATH=${KATELLO_CLI_PATH:-"~/Projects/hammer-cli-katello/"}
+KATELLO_ORG=${KATELLO_ORG:-ACME_Corporation}
+ORG_PARAM="--organization=$KATELLO_ORG"
+
+function h {
+  cd $KATELLO_CLI_PATH && bundle exec hammer $@
 }
 
-k client remember --option org --value $KATELLO_ORG
+function k {
+  cd $KATELLO_CLI_PATH && bundle exec hammer $@ $ORG_PARAM
+}
 

@@ -7,18 +7,17 @@
 
 source "$(dirname $0)/base.sh"
 
-k environment create --name=Dev --prior=Library
-k environment create --name=Staging --prior=Dev
+k lifecycle-environment create --name=Dev --prior=Library
+k lifecycle-environment create --name=Staging --prior=Dev
 
-k provider create --name=PuppetLabs
-k product create --name=PForge --provider=PuppetLabs
+k product create --name=PForge
 
-k repo create --name=pforge --url="http://forge.puppetlabs.com" --product=PForge --content_type=puppet
-k repo create --name=p --product=PForge --content_type=puppet
+k repo create --name=pforge --url="http://forge.puppetlabs.com" --product=PForge --content-type=puppet
+k repo create --name=p --product=PForge --content-type=puppet
 
 if [ -n $1 ]
 then
-  k repo synchronize --name=pforge --product_label=PForge
-  k content definition create --name=PuppetMods
-  k content definition add_repo --name=PuppetMods --repo=pforge --product=PForge
+  k repository synchronize --name=pforge --product_label=PForge
+  k content-view create --name=PuppetMods
+  k content-view add-repository --name=PuppetMods --repo=pforge --product=PForge
 fi
