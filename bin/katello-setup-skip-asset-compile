@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo 'map("/assets"){ run Rails.application.assets }' >> config.ru
+git update-index --assume-unchanged config.ru
