@@ -1,3 +1,5 @@
+# gem file with some util for foreman
+
 gem 'pry-rails'
 gem 'pry-remote'
 gem 'pry-byebug'
