@@ -10,3 +10,5 @@ gem 'tmuxinator'
 
 gem 'pry-coolline'
 gem 'pry-theme'
+
+gem 'puma-rails'
