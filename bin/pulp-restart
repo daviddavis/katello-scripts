@@ -2,5 +2,5 @@
 
 for x in httpd pulp_resource_manager pulp_celerybeat pulp_workers
 do
-  sudo service $x restart
+  sudo systemctl restart $x
 done
